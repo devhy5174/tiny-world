@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-type position = [number, number, number];
+type Position = [number, number, number];
+type CharacterProps = {
+  position: Position;
+  setPosition: React.Dispatch<React.SetStateAction<Position>>;
+};
 
-function Character() {
-  const [position, setPosition] = useState<position>([2, 0, 2]);
-
+function Character({ position, setPosition }: CharacterProps) {
   useEffect(() => {
     // 키보드 이동 조작키
     const handleKeyDown = (event: KeyboardEvent) => {
