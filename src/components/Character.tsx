@@ -1,6 +1,35 @@
+import { useEffect, useState } from "react";
+
+type position = [number, number, number];
+
 function Character() {
+  const [position, setPosition] = useState<position>([2, 0, 2]);
+
+  useEffect(() => {
+    // 키보드 이동 조작키
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "w") {
+        setPosition(([x, y, z]) => [x, y, z - 0.2]);
+      }
+      if (event.key === "s") {
+        setPosition(([x, y, z]) => [x, y, z + 0.2]);
+      }
+      if (event.key === "a") {
+        setPosition(([x, y, z]) => [x - 0.2, y, z]);
+      }
+      if (event.key === "d") {
+        setPosition(([x, y, z]) => [x + 0.2, y, z]);
+      }
+    };
+    // 접속시 키보드세팅
+    window.addEventListener("keydown", handleKeyDown);
+    // 종료시 키보드세팅종료
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
   return (
-    <group position={[0, 0, 0]}>
+    <group position={position}>
       {/* 몸 */}
       <mesh position={[0, 1.1, 0]}>
         <boxGeometry args={[0.7, 1, 0.4]} />
