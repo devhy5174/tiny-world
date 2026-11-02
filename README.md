@@ -6,6 +6,8 @@
 
 첫 번째 테마는 Christmas Village 🎄
 
+🚧 Development Started: 2026.11.02
+
 🛠 Tech Stack
 
 - React
