@@ -1,26 +1,28 @@
-import { useEffect } from "react";
+import { useFrame } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
 
 type Position = [number, number, number];
 type CharacterProps = {
-  position: Position;
-  setPosition: React.Dispatch<React.SetStateAction<Position>>;
+  setTargetPosition: React.Dispatch<React.SetStateAction<Position>>;
+  targetPosition: Position;
 };
 
-function Character({ position, setPosition }: CharacterProps) {
+function Character({ setTargetPosition, targetPosition }: CharacterProps) {
   useEffect(() => {
     // 키보드 이동 조작키
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "w") {
-        setPosition(([x, y, z]) => [x, y, z - 0.2]);
+        setTargetPosition(([x, y, z]) => [x, y, z - 0.2]);
       }
       if (event.key === "s") {
-        setPosition(([x, y, z]) => [x, y, z + 0.2]);
+        setTargetPosition(([x, y, z]) => [x, y, z + 0.2]);
       }
       if (event.key === "a") {
-        setPosition(([x, y, z]) => [x - 0.2, y, z]);
+        setTargetPosition(([x, y, z]) => [x - 0.2, y, z]);
       }
       if (event.key === "d") {
-        setPosition(([x, y, z]) => [x + 0.2, y, z]);
+        setTargetPosition(([x, y, z]) => [x + 0.2, y, z]);
       }
     };
     // 접속시 키보드세팅
@@ -29,9 +31,17 @@ function Character({ position, setPosition }: CharacterProps) {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [setTargetPosition]);
+
+  const groupRef = useRef<THREE.Group>(null);
+
+  useFrame(() => {
+    if (!groupRef.current) return;
+    const target = new THREE.Vector3(...targetPosition);
+    groupRef.current.position.lerp(target, 0.05); // 0.05는 한 프레임마다 목적지까지 남은 거리의 5%만큼 가까워져라
+  });
   return (
-    <group position={position}>
+    <group ref={groupRef}>
       {/* 몸 */}
       <mesh position={[0, 1.1, 0]}>
         <boxGeometry args={[0.7, 1, 0.4]} />
