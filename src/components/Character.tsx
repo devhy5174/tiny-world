@@ -38,6 +38,9 @@ function Character({ setTargetPosition, targetPosition }: CharacterProps) {
   useFrame(() => {
     if (!groupRef.current) return;
     const target = new THREE.Vector3(...targetPosition);
+    //캐릭터의 위치에게 target 쪽으로 5%이동해
+    groupRef.current.lookAt(target);
+    //캐릭터 타겟으로 5%이동
     groupRef.current.position.lerp(target, 0.05); // 0.05는 한 프레임마다 목적지까지 남은 거리의 5%만큼 가까워져라
   });
   return (
@@ -52,6 +55,22 @@ function Character({ setTargetPosition, targetPosition }: CharacterProps) {
       <mesh position={[0, 1.9, 0]}>
         <sphereGeometry args={[0.4, 32, 32]} />
         <meshStandardMaterial color="peachpuff" />
+      </mesh>
+
+      {/* 왼쪽 눈 */}
+
+      <mesh position={[-0.14, 1.98, 0.36]}>
+        <sphereGeometry args={[0.045, 16, 16]} />
+
+        <meshStandardMaterial color="black" />
+      </mesh>
+
+      {/* 오른쪽 눈 */}
+
+      <mesh position={[0.14, 1.98, 0.36]}>
+        <sphereGeometry args={[0.045, 16, 16]} />
+
+        <meshStandardMaterial color="black" />
       </mesh>
 
       {/* 왼팔 */}
