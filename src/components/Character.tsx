@@ -46,13 +46,13 @@ function Character({ setTargetPosition, targetPosition }: CharacterProps) {
   return (
     <group ref={groupRef}>
       {/* 몸 */}
-      <mesh position={[0, 1.1, 0]}>
+      <mesh position={[0, 1.1, 0]} castShadow>
         <boxGeometry args={[0.7, 1, 0.4]} />
         <meshStandardMaterial color="skyblue" />
       </mesh>
 
       {/* 머리 */}
-      <mesh position={[0, 1.9, 0]}>
+      <mesh position={[0, 1.9, 0]} castShadow>
         <sphereGeometry args={[0.4, 32, 32]} />
         <meshStandardMaterial color="peachpuff" />
       </mesh>
@@ -74,25 +74,25 @@ function Character({ setTargetPosition, targetPosition }: CharacterProps) {
       </mesh>
 
       {/* 왼팔 */}
-      <mesh position={[-0.5, 1.1, 0]}>
+      <mesh position={[-0.5, 1.1, 0]} castShadow>
         <boxGeometry args={[0.2, 0.8, 0.2]} />
         <meshStandardMaterial color="skyblue" />
       </mesh>
 
       {/* 오른팔 */}
-      <mesh position={[0.5, 1.1, 0]}>
+      <mesh position={[0.5, 1.1, 0]} castShadow>
         <boxGeometry args={[0.2, 0.8, 0.2]} />
         <meshStandardMaterial color="skyblue" />
       </mesh>
 
       {/* 왼다리 */}
-      <mesh position={[-0.2, 0.35, 0]}>
+      <mesh position={[-0.2, 0.35, 0]} castShadow>
         <boxGeometry args={[0.25, 0.7, 0.3]} />
         <meshStandardMaterial color="navy" />
       </mesh>
 
       {/* 오른다리 */}
-      <mesh position={[0.2, 0.35, 0]}>
+      <mesh position={[0.2, 0.35, 0]} castShadow>
         <boxGeometry args={[0.25, 0.7, 0.3]} />
         <meshStandardMaterial color="navy" />
       </mesh>

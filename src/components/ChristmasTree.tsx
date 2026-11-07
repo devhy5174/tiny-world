@@ -25,27 +25,27 @@ function ChristmasTree() {
   return (
     <group position={[2, 0, -2]}>
       {/* 나무 줄기 */}
-      <mesh position={[0, 0.5, 0]}>
+      <mesh position={[0, 0.5, 0]} castShadow>
         {/* cylinderGeometry -> 원기둥 */}
         <cylinderGeometry args={[0.2, 0.25, 1, 16]} />
         <meshStandardMaterial color="saddlebrown" />
       </mesh>
 
       {/* 아래쪽 잎 */}
-      <mesh position={[0, 1.2, 0]}>
+      <mesh position={[0, 1.2, 0]} castShadow>
         <coneGeometry args={[1.2, 1.5, 16]} />
         <meshStandardMaterial color="darkgreen" />
       </mesh>
 
       {/* 가운데 잎 */}
-      <mesh position={[0, 2, 0]}>
+      <mesh position={[0, 2, 0]} castShadow>
         <coneGeometry args={[0.9, 1.4, 16]} />
 
         <meshStandardMaterial color="green" />
       </mesh>
 
       {/* 위쪽 잎 */}
-      <mesh position={[0, 2.7, 0]}>
+      <mesh position={[0, 2.7, 0]} castShadow>
         <coneGeometry args={[0.6, 1.2, 16]} />
         <meshStandardMaterial color="forestgreen" />
       </mesh>
