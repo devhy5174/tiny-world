@@ -2,6 +2,7 @@ import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import Character from "./components/Character";
 import { useState } from "react";
+import ChristmasTree from "./components/ChristmasTree";
 
 type Position = [number, number, number];
 
@@ -26,7 +27,8 @@ function App() {
         <planeGeometry args={[10, 10]} />
         <meshStandardMaterial color="white" />
       </mesh>
-
+      {/* 트리 */}
+      <ChristmasTree />
       <OrbitControls />
     </Canvas>
   );
